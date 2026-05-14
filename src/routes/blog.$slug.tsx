@@ -84,12 +84,12 @@ function PostPage() {
             {post.excerpt}
           </p>
 
-          {post.content.map((block, i) => {
+          {post.content.map((block: typeof post.content[number], i: number) => {
             if (block.type === "h2") return <h2 key={i}>{block.text}</h2>;
             if (block.type === "h3") return <h3 key={i}>{block.text}</h3>;
             if (block.type === "quote") return <blockquote key={i}>"{block.text}"</blockquote>;
             if (block.type === "ul") return (
-              <ul key={i}>{block.items?.map((it, j) => <li key={j}>{it}</li>)}</ul>
+              <ul key={i}>{block.items?.map((it: string, j: number) => <li key={j}>{it}</li>)}</ul>
             );
             return <p key={i}>{block.text}</p>;
           })}
