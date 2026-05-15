@@ -70,7 +70,7 @@ export function BlogPost() {
           { name: "Blog", item: `${BASE_URL}/blog` },
           { name: post.title, item: postUrl },
         ]}
-        webPageType="Article"
+        webPageType="ItemPage"
         extraSchema={FAQ_SCHEMA}
       />
 
