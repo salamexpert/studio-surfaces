@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="Marino Ceramic Tile">
+  <defs>
+    <linearGradient id="a" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#CDB99E"/>
+      <stop offset="100%" stop-color="#B89E82"/>
+    </linearGradient>
+    <linearGradient id="b" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#332C26"/>
+      <stop offset="100%" stop-color="#1C1712"/>
+    </linearGradient>
+    <linearGradient id="c" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B8704A"/>
+      <stop offset="100%" stop-color="#8B5132"/>
+    </linearGradient>
+    <linearGradient id="d" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#CDB99E"/>
+      <stop offset="100%" stop-color="#B89E82"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="40" height="40" fill="#F7F2EC"/>
+  <!-- Grout lines -->
+  <rect x="18" y="1" width="4" height="38" fill="#E8DED2"/>
+  <rect x="1" y="18" width="38" height="4" fill="#E8DED2"/>
+  <!-- Top-left tile: warm sand -->
+  <rect x="1" y="1" width="17" height="17" rx="1.5" fill="url(#a)"/>
+  <!-- Subtle surface sheen on tile -->
+  <rect x="3" y="3" width="5" height="2" rx="1" fill="#DDD0BE" opacity="0.7"/>
+  <!-- Top-right tile: deep ink -->
+  <rect x="22" y="1" width="17" height="17" rx="1.5" fill="url(#b)"/>
+  <rect x="24" y="3" width="5" height="2" rx="1" fill="#4A423B" opacity="0.7"/>
+  <!-- Bottom-left tile: terracotta accent -->
+  <rect x="1" y="22" width="17" height="17" rx="1.5" fill="url(#c)"/>
+  <rect x="3" y="24" width="5" height="2" rx="1" fill="#CA8A62" opacity="0.7"/>
+  <!-- Bottom-right tile: warm sand (rotated gradient) -->
+  <rect x="22" y="22" width="17" height="17" rx="1.5" fill="url(#d)"/>
+  <rect x="24" y="24" width="5" height="2" rx="1" fill="#DDD0BE" opacity="0.7"/>
+</svg>

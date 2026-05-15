@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import heroImg from "@/assets/home-hero.jpg";
 import t1 from "@/assets/trending-1.jpg";
@@ -18,29 +18,27 @@ import g4 from "@/assets/gallery-4.jpg";
 import { POSTS } from "@/lib/content";
 import { ArticleCard } from "@/components/site/ArticleCard";
 import { Newsletter } from "@/components/site/Newsletter";
+import { SEO } from "@/components/SEO";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Marino Ceramic Tile — Modern Architecture & Surface Design" },
-      { name: "description", content: "Editorial coverage of ceramic surfaces, luxury interiors and contemporary architecture. New stories every week." },
-      { property: "og:title", content: "Marino Ceramic Tile" },
-      { property: "og:description", content: "Editorial coverage of ceramic surfaces, luxury interiors and contemporary architecture." },
-      { property: "og:image", content: heroImg },
-      { property: "og:url", content: "/" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-  }),
-  component: HomePage,
-});
+const BASE_URL = "https://marinoceramictile.com";
 
-function HomePage() {
+export function HomePage() {
   const trending = POSTS.slice(0, 3);
   const editorialPicks = POSTS.slice(3, 7);
   const latest = POSTS.slice(0, 4);
 
   return (
     <>
+      <SEO
+        title="Marino Ceramic Tile — Modern Architecture & Surface Design"
+        description="An editorial publication on ceramic surfaces, modern architecture, luxury bathrooms and contemporary interior design. New stories every week."
+        canonical="/"
+        ogImage={`${BASE_URL}/og-home.jpg`}
+        websiteSchema
+        webPageType="WebPage"
+        breadcrumbs={[{ name: "Home", item: BASE_URL + "/" }]}
+      />
+
       {/* HERO */}
       <section className="relative h-[90vh] min-h-[640px] -mt-16 md:-mt-20 flex items-end overflow-hidden">
         <img
@@ -62,8 +60,7 @@ function HomePage() {
               define the way contemporary homes feel. New stories every week.
             </p>
             <Link
-              to="/blog/$slug"
-              params={{ slug: POSTS[0].slug }}
+              to={`/blog/${POSTS[0].slug}`}
               className="group inline-flex items-center gap-3 text-sm uppercase tracking-widest border-b border-background pb-2 hover:border-accent hover:text-accent transition-colors w-fit"
             >
               Read this week's feature
@@ -88,7 +85,7 @@ function HomePage() {
           {trending.map((p, i) => (
             <div key={p.slug} style={{ animationDelay: `${i * 0.1}s` }} className="fade-up">
               <article className="group">
-                <Link to="/blog/$slug" params={{ slug: p.slug }} className="block">
+                <Link to={`/blog/${p.slug}`} className="block">
                   <div className="img-zoom aspect-[4/5] mb-5 bg-secondary">
                     <img src={[t1, t2, t3][i]} alt={p.title} loading="lazy" className="w-full h-full object-cover" />
                   </div>
@@ -116,18 +113,12 @@ function HomePage() {
         </div>
         <div>
           <p className="eyebrow">Surface design</p>
-          <h2 className="display text-4xl md:text-5xl mt-4">
-            The material is the message.
-          </h2>
+          <h2 className="display text-4xl md:text-5xl mt-4">The material is the message.</h2>
           <p className="mt-6 text-base text-muted-foreground leading-relaxed">
-            From hand-glazed zellige to bookmatched calacatta, the surfaces shaping the
-            year are quieter, more tactile, and more architectural than ever. Explore the
-            ceramics, stones and finishes our editors are watching.
+            From hand-glazed zellige to bookmatched calacatta, the surfaces shaping the year are quieter,
+            more tactile, and more architectural than ever.
           </p>
-          <Link
-            to="/surfaces"
-            className="mt-8 inline-flex items-center gap-3 text-sm uppercase tracking-widest text-accent border-b border-accent pb-1 hover:opacity-80"
-          >
+          <Link to="/surfaces" className="mt-8 inline-flex items-center gap-3 text-sm uppercase tracking-widest text-accent border-b border-accent pb-1 hover:opacity-80">
             Enter the Surfaces archive <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
@@ -145,17 +136,12 @@ function HomePage() {
         </div>
         <div className="md:order-1">
           <p className="eyebrow">Architecture</p>
-          <h2 className="display text-4xl md:text-5xl mt-4">
-            Spaces designed to be lived in slowly.
-          </h2>
+          <h2 className="display text-4xl md:text-5xl mt-4">Spaces designed to be lived in slowly.</h2>
           <p className="mt-6 text-base text-muted-foreground leading-relaxed">
-            We follow the architects building homes that age beautifully — the volumes,
-            the light, the considered restraint. Modernism without the chill.
+            We follow the architects building homes that age beautifully — the volumes, the light,
+            the considered restraint. Modernism without the chill.
           </p>
-          <Link
-            to="/architecture"
-            className="mt-8 inline-flex items-center gap-3 text-sm uppercase tracking-widest text-accent border-b border-accent pb-1 hover:opacity-80"
-          >
+          <Link to="/architecture" className="mt-8 inline-flex items-center gap-3 text-sm uppercase tracking-widest text-accent border-b border-accent pb-1 hover:opacity-80">
             Enter the Architecture archive <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
@@ -166,8 +152,7 @@ function HomePage() {
         <div className="max-w-5xl mx-auto text-center px-4">
           <p className="eyebrow">Editor's note</p>
           <blockquote className="display text-3xl md:text-5xl lg:text-6xl mt-8 italic font-light leading-tight">
-            "A great room begins with a great floor. Everything else simply earns its
-            place on top of it."
+            "A great room begins with a great floor. Everything else simply earns its place on top of it."
           </blockquote>
           <p className="mt-8 text-sm text-muted-foreground tracking-widest uppercase">
             Elena Marchetti — Editor in Chief
@@ -188,9 +173,7 @@ function HomePage() {
                 <img src={x.img} alt={x.t} loading="lazy" className="w-full h-full object-cover" />
               </div>
               <p className="eyebrow mb-3">{x.c}</p>
-              <h3 className="font-serif text-2xl md:text-3xl leading-tight group-hover:text-accent transition-colors">
-                {x.t}
-              </h3>
+              <h3 className="font-serif text-2xl md:text-3xl leading-tight group-hover:text-accent transition-colors">{x.t}</h3>
             </article>
           ))}
         </div>
@@ -232,17 +215,11 @@ function HomePage() {
         <div className="container-editorial grid md:grid-cols-2 gap-12 items-center">
           <div>
             <p className="eyebrow text-accent">Material library</p>
-            <h2 className="display text-4xl md:text-6xl mt-4 text-background">
-              Five surfaces. Endless rooms.
-            </h2>
+            <h2 className="display text-4xl md:text-6xl mt-4 text-background">Five surfaces. Endless rooms.</h2>
             <p className="mt-6 text-base text-background/80 leading-relaxed max-w-md">
-              A curated palette of the ceramics, stones and engineered surfaces our editors
-              have been specifying this year — from terracotta to charcoal microcement.
+              A curated palette of ceramics, stones and engineered surfaces our editors have been specifying this year.
             </p>
-            <Link
-              to="/surfaces"
-              className="mt-8 inline-flex items-center gap-3 text-sm uppercase tracking-widest text-accent border-b border-accent pb-1"
-            >
+            <Link to="/surfaces" className="mt-8 inline-flex items-center gap-3 text-sm uppercase tracking-widest text-accent border-b border-accent pb-1">
               Browse materials <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -252,7 +229,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* 11. ARCHITECTURAL INSPIRATION GALLERY */}
+      {/* 11. GALLERY */}
       <section className="container-editorial mt-32">
         <div className="border-b border-border pb-6 mb-12">
           <p className="eyebrow">Inspiration</p>

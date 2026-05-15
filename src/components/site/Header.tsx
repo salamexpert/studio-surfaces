@@ -1,6 +1,7 @@
-import { Link } from "@tanstack/react-router";
+import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Logo } from "@/components/site/Logo";
 
 const NAV = [
   { to: "/surfaces", label: "Surfaces" },
@@ -28,38 +29,37 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-500 ${
+      className={`sticky top-0 z-50 transition-all duration-500 border-b ${
         scrolled
-          ? "bg-background/85 backdrop-blur-md border-b border-border"
-          : "bg-transparent"
+          ? "bg-[#1C1712]/[0.97] backdrop-blur-md border-white/10"
+          : "bg-[#1C1712]/80 backdrop-blur-sm border-white/5"
       }`}
     >
       <div className="container-editorial flex items-center justify-between h-16 md:h-20">
-        <Link to="/" className="flex items-center gap-2 group">
-          <span className="w-7 h-7 rounded-full bg-accent flex items-center justify-center text-accent-foreground font-serif text-sm">
-            M
-          </span>
-          <span className="font-serif text-lg md:text-xl tracking-tight">
-            Marino<span className="text-accent">.</span>
-          </span>
-        </Link>
+        {/* Logo always rendered in light/white mode against dark header */}
+        <NavLink to="/" aria-label="Marino Ceramic Tile — Home">
+          <Logo height={32} textColor="#F5EFE7" accentColor="#C07650" />
+        </NavLink>
 
         <nav className="hidden md:flex items-center gap-9">
           {NAV.map((n) => (
-            <Link
+            <NavLink
               key={n.to}
               to={n.to}
-              className="text-[13px] tracking-wide uppercase text-foreground/80 hover:text-accent transition-colors"
-              activeProps={{ className: "text-accent" }}
+              className={({ isActive }) =>
+                `text-[13px] tracking-wide uppercase transition-colors ${
+                  isActive ? "text-[#C07650]" : "text-white/80 hover:text-white"
+                }`
+              }
             >
               {n.label}
-            </Link>
+            </NavLink>
           ))}
         </nav>
 
         <button
-          aria-label="Open menu"
-          className="md:hidden p-2 -mr-2"
+          aria-label="Open navigation menu"
+          className="md:hidden p-2 -mr-2 text-white/80 hover:text-white"
           onClick={() => setOpen(true)}
         >
           <Menu className="w-5 h-5" />
@@ -73,30 +73,30 @@ export function Header() {
         }`}
       >
         <div
-          className="absolute inset-0 bg-foreground/30 backdrop-blur-sm"
+          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
           onClick={() => setOpen(false)}
         />
         <aside
-          className={`absolute right-0 top-0 h-full w-[85%] max-w-sm bg-background shadow-2xl transition-transform duration-500 ${
+          className={`absolute right-0 top-0 h-full w-[85%] max-w-sm bg-[#1C1712] shadow-2xl transition-transform duration-500 ${
             open ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="flex items-center justify-between px-6 h-16 border-b border-border">
-            <span className="font-serif text-lg">Marino<span className="text-accent">.</span></span>
-            <button aria-label="Close" onClick={() => setOpen(false)}>
+          <div className="flex items-center justify-between px-6 h-16 border-b border-white/10">
+            <Logo height={28} textColor="#F5EFE7" accentColor="#C07650" />
+            <button aria-label="Close navigation menu" onClick={() => setOpen(false)} className="text-white/70 hover:text-white">
               <X className="w-5 h-5" />
             </button>
           </div>
           <nav className="flex flex-col p-6 gap-2">
             {NAV.map((n) => (
-              <Link
+              <NavLink
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="font-serif text-3xl py-3 border-b border-border/60 hover:text-accent transition-colors"
+                className="font-serif text-3xl py-3 border-b border-white/10 text-white/80 hover:text-white hover:text-[#C07650] transition-colors"
               >
                 {n.label}
-              </Link>
+              </NavLink>
             ))}
           </nav>
         </aside>

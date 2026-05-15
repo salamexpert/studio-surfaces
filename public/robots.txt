@@ -1,4 +1,10 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 
-Sitemap: https://www.marinoceramictile.com/sitemap.xml
+# Block non-content paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /cdn-cgi/
+
+# Sitemaps
+Sitemap: https://marinoceramictile.com/sitemap.xml

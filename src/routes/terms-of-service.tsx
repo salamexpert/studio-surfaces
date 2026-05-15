@@ -1,18 +1,21 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
+import { SEO } from "@/components/SEO";
 
-export const Route = createFileRoute("/terms-of-service")({
-  head: () => ({
-    meta: [
-      { title: "Terms of Service — Marino Ceramic Tile" },
-      { name: "description", content: "Terms governing use of the Marino Ceramic Tile editorial publication." },
-      { property: "og:title", content: "Terms of Service — Marino Ceramic Tile" },
-      { property: "og:url", content: "/terms-of-service" },
-    ],
-    links: [{ rel: "canonical", href: "/terms-of-service" }],
-  }),
-  component: () => (
+const BASE_URL = "https://marinoceramictile.com";
+
+export function TermsPage() {
+  return (
     <>
+      <SEO
+        title="Terms of Service — Marino Ceramic Tile"
+        description="Terms governing use of the Marino Ceramic Tile editorial publication and its content. Includes content policy, recommendations disclaimer and liability limitations."
+        canonical="/terms-of-service"
+        breadcrumbs={[
+          { name: "Home", item: `${BASE_URL}/` },
+          { name: "Terms of Service", item: `${BASE_URL}/terms-of-service` },
+        ]}
+      />
+
       <PageHero eyebrow="Legal" title="Terms of Service" intro="Last updated April 02, 2026." />
       <section className="container-editorial max-w-3xl prose-editorial">
         <p>By using Marino Ceramic Tile you agree to the following terms.</p>
@@ -26,5 +29,5 @@ export const Route = createFileRoute("/terms-of-service")({
         <p>We may update these terms periodically. Continued use of the site constitutes acceptance of any changes.</p>
       </section>
     </>
-  ),
-});
+  );
+}

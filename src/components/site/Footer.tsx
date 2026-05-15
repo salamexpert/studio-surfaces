@@ -1,16 +1,14 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Instagram, Twitter, Facebook, Linkedin } from "lucide-react";
+import { Logo } from "@/components/site/Logo";
 
 export function Footer() {
   return (
     <footer className="mt-32 border-t border-border bg-secondary/40">
       <div className="container-editorial py-16 grid gap-12 md:grid-cols-4">
         <div className="md:col-span-2">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="w-7 h-7 rounded-full bg-accent flex items-center justify-center text-accent-foreground font-serif text-sm">
-              M
-            </span>
-            <span className="font-serif text-xl">Marino Ceramic Tile</span>
+          <Link to="/" aria-label="Marino Ceramic Tile — Home">
+            <Logo height={34} />
           </Link>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
             An independent editorial publication exploring the surfaces, materials and
@@ -51,6 +49,8 @@ export function Footer() {
             <li><Link to="/terms-of-service" className="hover:text-accent">Terms of Service</Link></li>
             <li><Link to="/editorial-policy" className="hover:text-accent">Editorial Policy</Link></li>
             <li><Link to="/dmca-disclaimer" className="hover:text-accent">DMCA Disclaimer</Link></li>
+            <li><Link to="/legal-disclaimer" className="hover:text-accent">Legal Disclaimer</Link></li>
+            <li><Link to="/cookies-policy" className="hover:text-accent">Cookies Policy</Link></li>
             <li><Link to="/advertise" className="hover:text-accent">Advertise</Link></li>
           </ul>
         </div>
@@ -58,12 +58,12 @@ export function Footer() {
 
       <div className="border-t border-border">
         <div className="container-editorial py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <p>© 2026 Marino Ceramic Tile. An editorial publication.</p>
+          <p>© {new Date().getFullYear()} Marino Ceramic Tile. An editorial publication.</p>
           <div className="flex gap-4">
-            <a href="#" aria-label="Instagram" className="hover:text-accent"><Instagram className="w-4 h-4" /></a>
-            <a href="#" aria-label="Twitter" className="hover:text-accent"><Twitter className="w-4 h-4" /></a>
-            <a href="#" aria-label="Facebook" className="hover:text-accent"><Facebook className="w-4 h-4" /></a>
-            <a href="#" aria-label="LinkedIn" className="hover:text-accent"><Linkedin className="w-4 h-4" /></a>
+            <a href="https://instagram.com/marinoceramictile" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-accent"><Instagram className="w-4 h-4" /></a>
+            <a href="https://twitter.com/marinoceramictile" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" className="hover:text-accent"><Twitter className="w-4 h-4" /></a>
+            <a href="https://facebook.com/marinoceramictile" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-accent"><Facebook className="w-4 h-4" /></a>
+            <a href="https://linkedin.com/company/marinoceramictile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-accent"><Linkedin className="w-4 h-4" /></a>
           </div>
         </div>
       </div>

@@ -1,18 +1,22 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
+import { SEO } from "@/components/SEO";
 
-export const Route = createFileRoute("/editorial-policy")({
-  head: () => ({
-    meta: [
-      { title: "Editorial Policy — Marino Ceramic Tile" },
-      { name: "description", content: "How we report, fact-check and publish at Marino Ceramic Tile." },
-      { property: "og:title", content: "Editorial Policy — Marino Ceramic Tile" },
-      { property: "og:url", content: "/editorial-policy" },
-    ],
-    links: [{ rel: "canonical", href: "/editorial-policy" }],
-  }),
-  component: () => (
+const BASE_URL = "https://marinoceramictile.com";
+
+export function EditorialPolicyPage() {
+  return (
     <>
+      <SEO
+        title="Editorial Policy — Standards & Independence | Marino"
+        description="How Marino Ceramic Tile reports, fact-checks and publishes. Our editorial standards for independence, sourcing, photography and corrections."
+        canonical="/editorial-policy"
+        breadcrumbs={[
+          { name: "Home", item: `${BASE_URL}/` },
+          { name: "About", item: `${BASE_URL}/about` },
+          { name: "Editorial Policy", item: `${BASE_URL}/editorial-policy` },
+        ]}
+      />
+
       <PageHero eyebrow="About" title="Editorial Policy" intro="Our standards for reporting, fact-checking and disclosure." />
       <section className="container-editorial max-w-3xl prose-editorial">
         <h2>Independence</h2>
@@ -25,5 +29,5 @@ export const Route = createFileRoute("/editorial-policy")({
         <p>All photography credited to Marino Ceramic Tile is original to this publication. Where third-party photography appears, it is credited and used with permission or under appropriate licence.</p>
       </section>
     </>
-  ),
-});
+  );
+}

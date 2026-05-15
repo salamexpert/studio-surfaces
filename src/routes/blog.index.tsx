@@ -1,27 +1,29 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { POSTS } from "@/lib/content";
 import { ArticleCard } from "@/components/site/ArticleCard";
 import { PageHero } from "@/components/site/PageHero";
 import { Newsletter } from "@/components/site/Newsletter";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
+import { SEO } from "@/components/SEO";
 
-export const Route = createFileRoute("/blog/")({
-  head: () => ({
-    meta: [
-      { title: "Blog — Marino Ceramic Tile" },
-      { name: "description", content: "Long-form editorial writing on ceramic surfaces, modern architecture, luxury bathrooms, kitchens and the materials shaping contemporary interiors." },
-      { property: "og:title", content: "Blog — Marino Ceramic Tile" },
-      { property: "og:description", content: "Long-form editorial writing on surfaces and architecture." },
-      { property: "og:url", content: "/blog" },
-    ],
-    links: [{ rel: "canonical", href: "/blog" }],
-  }),
-  component: BlogIndex,
-});
+const BASE_URL = "https://marinoceramictile.com";
 
-function BlogIndex() {
+export function BlogIndex() {
   const [feature, ...rest] = POSTS;
   return (
     <>
+      <SEO
+        title="The Journal — Ceramic & Architecture Editorial | Marino"
+        description="Long-form editorial writing on ceramic surfaces, modern architecture, luxury bathrooms, kitchens and the materials shaping contemporary interiors. Weekly dispatches."
+        canonical="/blog"
+        breadcrumbs={[
+          { name: "Home", item: `${BASE_URL}/` },
+          { name: "Blog", item: `${BASE_URL}/blog` },
+        ]}
+        webPageType="CollectionPage"
+      />
+
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Blog" }]} />
+
       <PageHero
         eyebrow="The Journal"
         title="Long reads on the materials and architecture shaping how we live."

@@ -1,0 +1,66 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # ── Deploy all regular files ──────────────────────────────────────────
+      # dist/* matches every non-hidden file; strip_components removes the
+      # leading "dist/" so files land directly in public_html/.
+      - name: Deploy files
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: root
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "dist/*"
+          target: /home/marinoceramictile/public_html/
+          strip_components: 1
+
+      # ── Deploy .htaccess separately ───────────────────────────────────────
+      # Shell globs like dist/* intentionally skip dot-files, so .htaccess
+      # (which controls SPA routing and all redirects) must be sent in its
+      # own step. Without this the redirects and React routing break entirely.
+      - name: Deploy .htaccess
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: root
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "dist/.htaccess"
+          target: /home/marinoceramictile/public_html/
+          strip_components: 1
+
+      # ── Fix permissions and reload Apache ────────────────────────────────
+      - name: Set permissions and reload Apache
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: root
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            chown -R www-data:www-data /home/marinoceramictile/public_html/
+            find /home/marinoceramictile/public_html/ -type f -exec chmod 644 {} \;
+            find /home/marinoceramictile/public_html/ -type d -exec chmod 755 {} \;
+            systemctl reload apache2
+            echo "Deploy complete at $(date)"

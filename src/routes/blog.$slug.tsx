@@ -1,70 +1,98 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getPost, otherPosts, POSTS } from "@/lib/content";
+import { useParams, Link, Navigate } from "react-router-dom";
+import { getPost, otherPosts } from "@/lib/content";
 import { ReadingProgress } from "@/components/site/ReadingProgress";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
+import { SEO } from "@/components/SEO";
 
-export const Route = createFileRoute("/blog/$slug")({
-  loader: ({ params }) => {
-    const post = getPost(params.slug);
-    if (!post) throw notFound();
-    return { post };
-  },
-  head: ({ loaderData, params }) => {
-    const post = loaderData?.post;
-    if (!post) return { meta: [{ title: "Post not found" }] };
-    return {
-      meta: [
-        { title: `${post.title} — Marino Ceramic Tile` },
-        { name: "description", content: post.excerpt },
-        { property: "og:title", content: post.title },
-        { property: "og:description", content: post.excerpt },
-        { property: "og:image", content: post.cover },
-        { property: "og:type", content: "article" },
-        { property: "og:url", content: `/blog/${params.slug}` },
-        { property: "article:published_time", content: post.date },
-        { property: "article:author", content: post.author },
-      ],
-      links: [{ rel: "canonical", href: `/blog/${params.slug}` }],
-      scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: post.title,
-            description: post.excerpt,
-            image: post.cover,
-            author: { "@type": "Person", name: post.author },
-            datePublished: post.date,
-            publisher: {
-              "@type": "Organization",
-              name: "Marino Ceramic Tile",
-            },
-          }),
-        },
-      ],
-    };
-  },
-  component: PostPage,
-  notFoundComponent: () => (
-    <div className="container-editorial py-32 text-center">
-      <h1 className="display text-5xl">Article not found</h1>
-      <Link to="/blog" className="inline-block mt-6 text-accent uppercase tracking-widest text-sm border-b border-accent pb-1">Back to journal</Link>
-    </div>
-  ),
-});
+const BASE_URL = "https://marinoceramictile.com";
 
-function PostPage() {
-  const { post } = Route.useLoaderData();
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How long do ceramic and porcelain surfaces typically last?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Properly specified and installed contemporary porcelain and ceramic surfaces routinely last 30 to 50 years with minimal maintenance — well beyond the lifespan of most other interior finishes.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is large-format porcelain harder to install?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Slabs over 1200mm require specialised lifting equipment, suction cups, and an installer experienced in thin-bed adhesives. Always insist on a qualified team.",
+      },
+    },
+  ],
+};
+
+export function BlogPost() {
+  const { slug } = useParams<{ slug: string }>();
+  const post = getPost(slug ?? "");
+
+  if (!post) return <Navigate to="/" replace />;
+
   const related = otherPosts(post.slug, 4);
-  const featured = POSTS.filter((p) => p.slug !== post.slug).slice(4, 7);
+  const postUrl = `${BASE_URL}/blog/${post.slug}`;
+  // Vite asset paths start with "/" — prefix with BASE_URL for absolute schema/OG URLs
+  const absoluteCover = `${BASE_URL}${post.cover}`;
 
   return (
     <>
+      <SEO
+        title={`${post.title} — Marino Ceramic Tile`}
+        description={post.excerpt}
+        canonical={`/blog/${post.slug}`}
+        ogType="article"
+        ogImage={absoluteCover}
+        article={{
+          headline: post.title,
+          description: post.excerpt,
+          publishedTime: post.date,
+          modifiedTime: post.date,
+          author: post.author,
+          authorUrl: `${BASE_URL}/about`,
+          section: post.category,
+          imageUrl: absoluteCover,
+          tags: [
+            "ceramic tile",
+            "interior design",
+            "surface design",
+            post.category.toLowerCase(),
+          ],
+          postUrl,
+        }}
+        breadcrumbs={[
+          { name: "Home", item: `${BASE_URL}/` },
+          { name: "Blog", item: `${BASE_URL}/blog` },
+          { name: post.title, item: postUrl },
+        ]}
+        webPageType="Article"
+        extraSchema={FAQ_SCHEMA}
+      />
+
+      <Breadcrumb
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Blog", href: "/blog" },
+          { name: post.title },
+        ]}
+      />
+
       <ReadingProgress />
 
       {/* Cinematic hero */}
-      <section className="relative h-[70vh] min-h-[520px] -mt-16 md:-mt-20 flex items-end overflow-hidden">
-        <img src={post.cover} alt={post.title} className="absolute inset-0 w-full h-full object-cover" />
+      <section className="relative h-[70vh] min-h-[520px] -mt-0 flex items-end overflow-hidden">
+        <img
+          src={post.cover}
+          alt={post.title}
+          className="absolute inset-0 w-full h-full object-cover"
+          width={1200}
+          height={630}
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/30 to-foreground/30" />
         <div className="container-editorial relative pb-12 md:pb-20 text-background">
           <p className="eyebrow text-accent">{post.category}</p>
@@ -94,9 +122,9 @@ function PostPage() {
             return <p key={i}>{block.text}</p>;
           })}
 
-          {/* FAQ */}
+          {/* FAQ — also reflected in FAQ schema above */}
           <h2>Frequently asked</h2>
-          <h3>How long do these surfaces typically last?</h3>
+          <h3>How long do ceramic and porcelain surfaces typically last?</h3>
           <p>Properly specified and installed contemporary porcelain and ceramic surfaces routinely last 30 to 50 years with minimal maintenance — well beyond the lifespan of most other interior finishes.</p>
           <h3>Is large-format porcelain harder to install?</h3>
           <p>Yes. Slabs over 1200mm require specialised lifting equipment, suction cups, and an installer experienced in thin-bed adhesives. Always insist on a qualified team.</p>
@@ -115,9 +143,14 @@ function PostPage() {
             <ul className="space-y-5">
               {related.map((p) => (
                 <li key={p.slug} className="flex gap-3 group">
-                  <Link to="/blog/$slug" params={{ slug: p.slug }} className="flex gap-3">
+                  <Link to={`/blog/${p.slug}`} className="flex gap-3">
                     <div className="w-20 h-20 shrink-0 img-zoom">
-                      <img src={p.cover} alt={p.title} loading="lazy" className="w-full h-full object-cover" />
+                      <img
+                        src={p.cover}
+                        alt={p.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div>
                       <p className="text-[10px] uppercase tracking-widest text-accent">{p.category}</p>
@@ -131,25 +164,15 @@ function PostPage() {
             </ul>
           </div>
 
-          <div>
-            <p className="eyebrow mb-4">Trending</p>
-            <ol className="space-y-3">
-              {featured.map((p, i) => (
-                <li key={p.slug} className="flex gap-3 group">
-                  <span className="font-serif text-3xl text-accent/60 leading-none">0{i + 1}</span>
-                  <Link to="/blog/$slug" params={{ slug: p.slug }} className="font-serif text-sm leading-snug group-hover:text-accent transition-colors">
-                    {p.title}
-                  </Link>
-                </li>
-              ))}
-            </ol>
-          </div>
-
           <div className="bg-secondary/60 p-6">
             <p className="eyebrow mb-3">The Marino Dispatch</p>
             <p className="text-sm text-muted-foreground mb-4">Sunday morning, in your inbox.</p>
             <form onSubmit={(e) => e.preventDefault()} className="flex gap-2">
-              <input type="email" placeholder="email" className="flex-1 bg-transparent border-b border-border text-sm py-2 outline-none focus:border-accent" />
+              <input
+                type="email"
+                placeholder="email"
+                className="flex-1 bg-transparent border-b border-border text-sm py-2 outline-none focus:border-accent"
+              />
               <button className="text-xs uppercase tracking-widest text-accent">Join</button>
             </form>
           </div>
@@ -160,9 +183,14 @@ function PostPage() {
         <p className="eyebrow mb-8">More from the journal</p>
         <div className="grid md:grid-cols-3 gap-10">
           {related.slice(0, 3).map((p) => (
-            <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }} className="group">
+            <Link key={p.slug} to={`/blog/${p.slug}`} className="group">
               <div className="img-zoom aspect-[5/4] mb-4">
-                <img src={p.cover} alt={p.title} loading="lazy" className="w-full h-full object-cover" />
+                <img
+                  src={p.cover}
+                  alt={p.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <p className="eyebrow mb-2">{p.category}</p>
               <h3 className="font-serif text-xl group-hover:text-accent transition-colors">{p.title}</h3>

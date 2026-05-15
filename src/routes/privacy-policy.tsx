@@ -1,18 +1,24 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
+import { SEO } from "@/components/SEO";
 
-export const Route = createFileRoute("/privacy-policy")({
-  head: () => ({
-    meta: [
-      { title: "Privacy Policy — Marino Ceramic Tile" },
-      { name: "description", content: "How Marino Ceramic Tile collects, uses and protects your information." },
-      { property: "og:title", content: "Privacy Policy — Marino Ceramic Tile" },
-      { property: "og:url", content: "/privacy-policy" },
-    ],
-    links: [{ rel: "canonical", href: "/privacy-policy" }],
-  }),
-  component: () => (
+const BASE_URL = "https://marinoceramictile.com";
+
+export function PrivacyPage() {
+  return (
     <>
+      <SEO
+        title="Privacy Policy — Marino Ceramic Tile"
+        description="How Marino Ceramic Tile collects, uses and protects your information when you visit our editorial publication. Last updated April 2026."
+        canonical="/privacy-policy"
+        noIndex={false}
+        breadcrumbs={[
+          { name: "Home", item: `${BASE_URL}/` },
+          { name: "Privacy Policy", item: `${BASE_URL}/privacy-policy` },
+        ]}
+      />
+
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Privacy Policy" }]} />
       <PageHero eyebrow="Legal" title="Privacy Policy" intro="Last updated April 02, 2026." />
       <section className="container-editorial max-w-3xl prose-editorial">
         <p>This privacy policy describes how Marino Ceramic Tile ("we", "us") collects and uses information when you visit our editorial publication.</p>
@@ -26,5 +32,5 @@ export const Route = createFileRoute("/privacy-policy")({
         <p>You may unsubscribe from the newsletter at any time using the link at the foot of every email. You may request deletion of your data by writing to editors@marinoceramictile.com.</p>
       </section>
     </>
-  ),
-});
+  );
+}

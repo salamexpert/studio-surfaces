@@ -1,0 +1,46 @@
+Options -MultiViews
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # ── 1. HTTPS redirect (Cloudflare-safe) ──────────────────────────────────
+    #    Cloudflare terminates SSL and passes traffic to origin over HTTP,
+    #    so %{HTTPS} is always "off" on the server side. Using
+    #    X-Forwarded-Proto avoids an infinite redirect loop.
+    RewriteCond %{HTTP:X-Forwarded-Proto} =http
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+    # ── 2. www → non-www (canonical domain enforcement) ──────────────────────
+    RewriteCond %{HTTP_HOST} ^www\.marinoceramictile\.com [NC]
+    RewriteRule ^(.*)$ https://marinoceramictile.com/$1 [R=301,L]
+
+    # ── 3. Serve real static files and directories normally ──────────────────
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # ── 4. Valid React Router routes → index.html (HTTP 200) ─────────────────
+    # Each known route is listed explicitly. Unknown paths fall through to
+    # the ErrorDocument below so the server returns a real HTTP 404 status.
+
+    RewriteRule ^$                          /index.html [L]
+    RewriteRule ^blog/?$                    /index.html [L]
+    RewriteRule ^blog/[^/]+/?$             /index.html [L]
+    RewriteRule ^surfaces/?$               /index.html [L]
+    RewriteRule ^architecture/?$           /index.html [L]
+    RewriteRule ^about/?$                  /index.html [L]
+    RewriteRule ^contact/?$                /index.html [L]
+    RewriteRule ^advertise/?$              /index.html [L]
+    RewriteRule ^privacy-policy/?$         /index.html [L]
+    RewriteRule ^terms-of-service/?$       /index.html [L]
+    RewriteRule ^editorial-policy/?$       /index.html [L]
+    RewriteRule ^dmca-disclaimer/?$        /index.html [L]
+    RewriteRule ^legal-disclaimer/?$       /index.html [L]
+    RewriteRule ^cookies-policy/?$         /index.html [L]
+
+    # Anything not matched above falls through to the 404 handler below.
+    # Apache will serve /404.html with the correct HTTP 404 status code.
+</IfModule>
+
+# ── 5. Proper 404 status + branded page ──────────────────────────────────────
+ErrorDocument 404 /404.html

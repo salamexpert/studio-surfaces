@@ -1,0 +1,4 @@
+# Cloudflare Pages / Netlify SPA routing
+# All paths serve index.html so React Router handles navigation (200)
+# The app itself 301-redirects trailing slashes client-side.
+/*    /index.html   200

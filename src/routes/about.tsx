@@ -1,25 +1,27 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
+import { Breadcrumb } from "@/components/site/Breadcrumb";
 import aboutHero from "@/assets/about-hero.jpg";
+import { SEO } from "@/components/SEO";
 
-export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — Marino Ceramic Tile" },
-      { name: "description", content: "Marino Ceramic Tile is an independent editorial publication on ceramic surfaces, modern architecture and contemporary interior design." },
-      { property: "og:title", content: "About — Marino Ceramic Tile" },
-      { property: "og:description", content: "An independent editorial publication on surfaces and architecture." },
-      { property: "og:image", content: aboutHero },
-      { property: "og:url", content: "/about" },
-    ],
-    links: [{ rel: "canonical", href: "/about" }],
-  }),
-  component: AboutPage,
-});
+const BASE_URL = "https://marinoceramictile.com";
 
-function AboutPage() {
+export function AboutPage() {
   return (
     <>
+      <SEO
+        title="About Marino — Independent Ceramic & Architecture Editorial"
+        description="Marino Ceramic Tile is an independent editorial publication on ceramic surfaces, modern architecture and contemporary interior design. Built by a team of architects and writers."
+        canonical="/about"
+        ogImage={`${BASE_URL}/og-about.jpg`}
+        breadcrumbs={[
+          { name: "Home", item: `${BASE_URL}/` },
+          { name: "About", item: `${BASE_URL}/about` },
+        ]}
+        webPageType="AboutPage"
+      />
+
+      <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "About" }]} />
+
       <PageHero
         eyebrow="About"
         title="An editorial publication on the materials that define how we live."

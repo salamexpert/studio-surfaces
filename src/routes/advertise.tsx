@@ -1,18 +1,21 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
+import { SEO } from "@/components/SEO";
 
-export const Route = createFileRoute("/advertise")({
-  head: () => ({
-    meta: [
-      { title: "Advertise — Marino Ceramic Tile" },
-      { name: "description", content: "Reach an engaged audience of architects, interior designers and discerning homeowners through Marino Ceramic Tile." },
-      { property: "og:title", content: "Advertise — Marino Ceramic Tile" },
-      { property: "og:url", content: "/advertise" },
-    ],
-    links: [{ rel: "canonical", href: "/advertise" }],
-  }),
-  component: () => (
+const BASE_URL = "https://marinoceramictile.com";
+
+export function AdvertisePage() {
+  return (
     <>
+      <SEO
+        title="Advertise with Marino — Reach Design Professionals & Architects"
+        description="Reach an engaged audience of architects, interior designers and discerning homeowners through Marino Ceramic Tile editorial partnerships. Limited seasonal sponsorships."
+        canonical="/advertise"
+        breadcrumbs={[
+          { name: "Home", item: `${BASE_URL}/` },
+          { name: "Advertise", item: `${BASE_URL}/advertise` },
+        ]}
+      />
+
       <PageHero
         eyebrow="Partnerships"
         title="Advertise with us."
@@ -41,5 +44,5 @@ export const Route = createFileRoute("/advertise")({
         </aside>
       </section>
     </>
-  ),
-});
+  );
+}
