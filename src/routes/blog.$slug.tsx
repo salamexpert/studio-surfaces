@@ -5,8 +5,9 @@ import { Breadcrumb } from "@/components/site/Breadcrumb";
 import { SEO } from "@/components/SEO";
 
 const BASE_URL = "https://marinoceramictile.com";
+const INTERNAL_BASE = "https://marinoceramictile.com";
 
-const FAQ_SCHEMA = {
+const DEFAULT_FAQ_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
@@ -29,6 +30,61 @@ const FAQ_SCHEMA = {
   ],
 };
 
+function renderInlineLinks(text: string) {
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const parts: Array<string | JSX.Element> = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = regex.exec(text)) !== null) {
+    const [fullMatch, label, url] = match;
+    const start = match.index;
+
+    if (start > lastIndex) {
+      parts.push(text.slice(lastIndex, start));
+    }
+
+    const isInternal = url.startsWith(INTERNAL_BASE) || url.startsWith("/");
+    parts.push(
+      <a
+        key={`${label}-${start}`}
+        href={url}
+        {...(!isInternal
+          ? { target: "_blank", rel: "noopener noreferrer nofollow" }
+          : {})}
+        className="text-accent underline decoration-accent/40 hover:decoration-accent"
+      >
+        {label}
+      </a>
+    );
+
+    lastIndex = start + fullMatch.length;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return parts.length === 1 && typeof parts[0] === "string" ? parts[0] : parts;
+}
+
+function faqSchemaForPost(faq?: { question: string; answer: string }[]) {
+  if (!faq) return DEFAULT_FAQ_SCHEMA;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const post = getPost(slug ?? "");
@@ -38,43 +94,40 @@ export function BlogPost() {
   const related = otherPosts(post.slug, 4);
   const postUrl = `${BASE_URL}/blog/${post.slug}`;
   // Vite asset paths start with "/" — prefix with BASE_URL for absolute schema/OG URLs
-  const absoluteCover = `${BASE_URL}${post.cover}`;
+      const absoluteCover = post.cover.startsWith("https://") ? post.cover : `${BASE_URL}${post.cover}`;
 
-  return (
-    <>
-      <SEO
-        title={`${post.title} — Marino Ceramic Tile`}
-        description={post.excerpt}
-        canonical={`/blog/${post.slug}`}
-        ogType="article"
-        ogImage={absoluteCover}
-        article={{
-          headline: post.title,
-          description: post.excerpt,
-          publishedTime: post.date,
-          modifiedTime: post.date,
-          author: post.author,
-          authorUrl: `${BASE_URL}/about`,
-          section: post.category,
-          imageUrl: absoluteCover,
-          tags: [
-            "ceramic tile",
-            "interior design",
-            "surface design",
-            post.category.toLowerCase(),
-          ],
-          postUrl,
-        }}
-        breadcrumbs={[
-          { name: "Home", item: `${BASE_URL}/` },
-          { name: "Blog", item: `${BASE_URL}/blog` },
-          { name: post.title, item: postUrl },
-        ]}
-        webPageType="ItemPage"
-        extraSchema={FAQ_SCHEMA}
-      />
-
-      <Breadcrumb
+      return (
+        <>
+          <SEO
+            title={`${post.title} — Marino Ceramic Tile`}
+            description={post.excerpt}
+            canonical={`/blog/${post.slug}`}
+            ogType="article"
+            ogImage={absoluteCover}
+            article={{
+              headline: post.title,
+              description: post.excerpt,
+              publishedTime: post.date,
+              modifiedTime: post.date,
+              author: post.author,
+              authorUrl: `${BASE_URL}/about`,
+              section: post.category,
+              imageUrl: absoluteCover,
+              tags: [
+                "ceramic tile",
+                "interior design",
+                "surface design",
+                post.category.toLowerCase(),
+              ],
+              postUrl,
+            }}
+            breadcrumbs={[
+              { name: "Home", item: `${BASE_URL}/` },
+              { name: "Blog", item: `${BASE_URL}/blog` },
+              { name: post.title, item: postUrl },
+            ]}
+            webPageType="ItemPage"
+            extraSchema={faqSchemaForPost(post.faq)}
         items={[
           { name: "Home", href: "/" },
           { name: "Blog", href: "/blog" },
@@ -113,21 +166,24 @@ export function BlogPost() {
           </p>
 
           {post.content.map((block: typeof post.content[number], i: number) => {
-            if (block.type === "h2") return <h2 key={i}>{block.text}</h2>;
-            if (block.type === "h3") return <h3 key={i}>{block.text}</h3>;
-            if (block.type === "quote") return <blockquote key={i}>"{block.text}"</blockquote>;
+            if (block.type === "h2") return <h2 key={i}>{renderInlineLinks(block.text ?? "")}</h2>;
+            if (block.type === "h3") return <h3 key={i}>{renderInlineLinks(block.text ?? "")}</h3>;
+            if (block.type === "quote") return <blockquote key={i}>"{renderInlineLinks(block.text ?? "")}"</blockquote>;
             if (block.type === "ul") return (
-              <ul key={i}>{block.items?.map((it: string, j: number) => <li key={j}>{it}</li>)}</ul>
+              <ul key={i}>{block.items?.map((it: string, j: number) => <li key={j}>{renderInlineLinks(it)}</li>)}</ul>
             );
-            return <p key={i}>{block.text}</p>;
+            return <p key={i}>{renderInlineLinks(block.text ?? "")}</p>;
           })}
 
-          {/* FAQ — also reflected in FAQ schema above */}
-          <h2>Frequently asked</h2>
-          <h3>How long do ceramic and porcelain surfaces typically last?</h3>
-          <p>Properly specified and installed contemporary porcelain and ceramic surfaces routinely last 30 to 50 years with minimal maintenance — well beyond the lifespan of most other interior finishes.</p>
-          <h3>Is large-format porcelain harder to install?</h3>
-          <p>Yes. Slabs over 1200mm require specialised lifting equipment, suction cups, and an installer experienced in thin-bed adhesives. Always insist on a qualified team.</p>
+          <section className="mt-14">
+            <h2>FAQs</h2>
+            {post.faq?.map((item, idx) => (
+              <div key={idx} className="mt-8">
+                <h3>{item.question}</h3>
+                <p>{renderInlineLinks(item.answer)}</p>
+              </div>
+            ))}
+          </section>
 
           <p className="mt-12 text-sm text-muted-foreground">
             Continue reading on{" "}

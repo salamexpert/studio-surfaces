@@ -19,6 +19,7 @@ export type BlogPost = {
   readingTime: string;
   cover: string;
   content: { type: "p" | "h2" | "h3" | "quote" | "ul"; text?: string; items?: string[] }[];
+  faq?: { question: string; answer: string }[];
 };
 
 export const POSTS: BlogPost[] = [
@@ -262,6 +263,74 @@ export const POSTS: BlogPost[] = [
       { type: "p", text: "Soft-touch porcelains in warm sand, honed limestone-effect tiles, micro-mosaics in oatmeal and pebble — the modern wellness palette favours surfaces with subtle variation rather than bold pattern. The eye should rest, not work." },
       { type: "h3", text: "Don't Forget the Bench" },
       { type: "p", text: "A teak or stone bench inside the shower is the single most spa-feeling addition you can make to a bathroom. It signals slowness, ritual, and care — without saying any of those words out loud." },
+    ],
+  },
+  {
+    slug: "spa-like-experience-at-home-without-renovation",
+    title: "How to Create a Spa-Like Experience at Home Without Renovation",
+    excerpt: "How to create a spa-like experience at home without renovation: sensory routine, lighting, scent, textiles, and a 30-minute reset.",
+    category: "Bathrooms",
+    author: "Ava Romano",
+    date: "April 10, 2026",
+    readingTime: "8 min read",
+    cover: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
+    content: [
+      {
+        type: "p",
+        text: "You don't need to remodel your bathroom to make it feel like a spa. The four things that decide \"spa or not spa\" are scent, sound, light, and texture and you can change all four for under $150. A real spa-like experience at home comes from a 30-minute sensory routine repeated weekly, not from new fixtures. Below is the no-renovation playbook, room by room.",
+      },
+      { type: "h2", text: "Why scent does most of the work" },
+      { type: "p", text: "Smell is the only sense wired directly to the limbic system, the part of the brain that handles emotion and memory. That's why spas all smell the same eucalyptus, lavender, cedar, or a blend of all three. Recreate the cue at home and your body relaxes before your mind catches up." },
+      { type: "ul", items: [
+          "Hang a small eucalyptus bundle from your showerhead. Steam releases the oil. Lasts about two weeks.",
+          "Run a reed diffuser 24/7 in the bathroom; lavender for evening, citrus or rosemary for morning.",
+          "Skip plug-in air fresheners. They smell synthetic and undo the effect.",
+      ]},
+      { type: "h2", text: "Fix the lighting before anything else" },
+      { type: "p", text: "Bright overhead lighting is the single biggest reason a bathroom feels clinical. The cheapest spa fix is a $15 dimmer switch (any electrician can swap it in 20 minutes) plus warm-temperature bulbs at 2,700K. If you can't dim, add a small lamp on a side counter and a battery-operated candle. Multiple low light sources beat one bright one every time." },
+      { type: "h2", text: "Upgrade what you touch" },
+      { type: "ul", items: [
+          "Oversized cotton bath towels - 700+ GSM.",
+          "A real bath mat, not a thin one. Tufted cotton or chenille.",
+          "A waffle robe hanging on the back of the door, even if you don't use it daily. Visual cue alone signals \"slow down.\"",
+          "Replace any plastic bottles you can see with refillable amber or frosted glass. The visual noise of branded plastic is what most kills the spa feeling.",
+      ]},
+      { type: "h2", text: "Add ambient sound" },
+      { type: "p", text: "Silence in a bathroom amplifies plumbing noise. A small Bluetooth speaker playing a spa playlist, ocean waves, or pink noise covers it and signals to your nervous system that you're off-duty. Most people find 50–60dB ideal quiet but present." },
+      { type: "h2", text: "The 30-minute reset" },
+      { type: "p", text: "Run this once a week. It's the part that turns a bathroom into a spa rather than a bathroom with candles in it." },
+      { type: "ul", items: [
+          "0–5 min: dim the lights, start the music, light a candle, run the diffuser.",
+          "5–10 min: dry-brush the body before showering. Improves circulation, takes 60 seconds.",
+          "10–20 min: shower with the eucalyptus bundle, or soak with magnesium flakes (cheaper and gentler than Epsom salt).",
+          "20–25 min: a 5-minute facial massage with any oil you already own.",
+          "25–30 min: robe, water, breathing. Don't pick up your phone yet.",
+      ]},
+      { type: "h2", text: "Extend the spa feeling beyond the bathroom" },
+      { type: "p", text: "The spa cue should follow you out of the bathroom. A linen quilt on the bed, a tray with a glass carafe, plants near a window, and the same scent in both rooms keeps the parasympathetic state going. If you ever do decide to renovate down the line, surface materials are what most define a spa bathroom; natural stone-look tile, large-format porcelain, soft matte finishes, and warm neutrals all read instantly as luxury. Curated tile retailers like [Mineral Tiles](https://www.mineraltiles.com/) carry the spa-bathroom looks people pin without the showroom markup. But you do not need any of it for the experience itself; the four senses do the work. If you're interested in creating a more permanent spa aesthetic later, [spa bathroom looks](https://marinoceramictile.com/blog/creating-spa-inspired-bathrooms-with-modern-tiles) can be achieved with natural stone-look tile, large-format porcelain, soft matte finishes, and warm neutrals.",
+      },
+    ],
+    faq: [
+      {
+        question: "Can you really get a spa-like experience at home without renovation?",
+        answer: "Yes, most of what makes a spa feel like a spa is sensory: scent, sound, light, and texture. None of those require renovation. People often confuse the look of a spa bathroom with the feeling of one; the feeling is what matters and it's almost free to recreate.",
+      },
+      {
+        question: "What's the cheapest way to make my bathroom feel like a spa?",
+        answer: "Three things, total cost under $50: a dimmable bulb or a battery candle, a eucalyptus bundle in the shower, and one oversized white towel. Run a relaxation playlist on your phone. That's a spa.",
+      },
+      {
+        question: "Are essential oils safe in the bathroom?",
+        answer: "Diffuser oils are generally safe at low concentrations. Don't apply undiluted oils directly to skin, keep diffusers out of reach of pets (especially cats with tea tree or eucalyptus), and ventilate the room well.",
+      },
+      {
+        question: "How often should I do an at-home spa routine?",
+        answer: "Once a week is plenty for a long routine. The light-and-scent setup, though, should be on every day; it's what makes the bathroom feel different from the rest of the house even when you're not formally doing a spa session.",
+      },
+      {
+        question: "What single change would make the biggest spa-like difference?",
+        answer: "A dimmer switch with warm 2,700K bulbs. Lighting controls how a space feels more than any other single element, and most homes have bathroom lighting set to a level that's good for cleaning, not for unwinding.",
+      },
     ],
   },
   {
