@@ -166,13 +166,15 @@ export function BlogPost() {
           </p>
 
           {post.content.map((block: typeof post.content[number], i: number) => {
-            if (block.type === "h2") return <h2 key={i}>{renderInlineLinks(block.text ?? "")}</h2>;
-            if (block.type === "h3") return <h3 key={i}>{renderInlineLinks(block.text ?? "")}</h3>;
-            if (block.type === "quote") return <blockquote key={i}>"{renderInlineLinks(block.text ?? "")}"</blockquote>;
+            const text = block.text?.trim() ?? "";
+            if (text && text === post.title) return null;
+            if (block.type === "h2") return <h2 key={i}>{renderInlineLinks(text)}</h2>;
+            if (block.type === "h3") return <h3 key={i}>{renderInlineLinks(text)}</h3>;
+            if (block.type === "quote") return <blockquote key={i}>"{renderInlineLinks(text)}"</blockquote>;
             if (block.type === "ul") return (
               <ul key={i}>{block.items?.map((it: string, j: number) => <li key={j}>{renderInlineLinks(it)}</li>)}</ul>
             );
-            return <p key={i}>{renderInlineLinks(block.text ?? "")}</p>;
+            return <p key={i}>{renderInlineLinks(text)}</p>;
           })}
 
           <section className="mt-14">
