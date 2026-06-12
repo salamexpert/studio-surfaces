@@ -277,10 +277,6 @@ export const POSTS: BlogPost[] = [
     readingTime: "8 min read",
     cover: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
     content: [
-      {
-        type: "p",
-        text: "You don't need to remodel your bathroom to make it feel like a spa. The four things that decide \"spa or not spa\" are scent, sound, light, and texture and you can change all four for under $150. A real spa-like experience at home comes from a 30-minute sensory routine repeated weekly, not from new fixtures. Below is the no-renovation playbook, room by room.",
-      },
       { type: "h2", text: "Why scent does most of the work" },
       { type: "p", text: "Smell is the only sense wired directly to the limbic system, the part of the brain that handles emotion and memory. That's why spas all smell the same eucalyptus, lavender, cedar, or a blend of all three. Recreate the cue at home and your body relaxes before your mind catches up." },
       { type: "ul", items: [
