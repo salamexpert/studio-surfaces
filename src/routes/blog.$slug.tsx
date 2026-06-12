@@ -138,7 +138,7 @@ export function BlogPost() {
       <ReadingProgress />
 
       {/* Cinematic hero */}
-      <section className="relative h-[70vh] min-h-[520px] -mt-0 flex items-end overflow-hidden">
+      <section className="relative h-[40vh] md:h-[70vh] min-h-[300px] md:min-h-[520px] -mt-0 flex items-center md:items-end overflow-hidden">
         <img
           src={post.cover}
           alt={post.title}
