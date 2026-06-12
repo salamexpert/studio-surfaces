@@ -291,6 +291,7 @@ export const POSTS: BlogPost[] = [
       { type: "h2", text: "Fix the lighting before anything else" },
       { type: "p", text: "Bright overhead lighting is the single biggest reason a bathroom feels clinical. The cheapest spa fix is a $15 dimmer switch (any electrician can swap it in 20 minutes) plus warm-temperature bulbs at 2,700K. If you can't dim, add a small lamp on a side counter and a battery-operated candle. Multiple low light sources beat one bright one every time." },
       { type: "h2", text: "Upgrade what you touch" },
+      { type: "p", text: "Spas feel expensive because everything you touch is heavier than you expect. Replicate the cue:" },
       { type: "ul", items: [
           "Oversized cotton bath towels - 700+ GSM.",
           "A real bath mat, not a thin one. Tufted cotton or chenille.",
