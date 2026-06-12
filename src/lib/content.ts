@@ -12,6 +12,7 @@ import blog10 from "@/assets/blog-10.jpg";
 export type BlogPost = {
   slug: string;
   title: string;
+  seoTitle?: string;
   excerpt: string;
   category: string;
   author: string;
@@ -268,6 +269,7 @@ export const POSTS: BlogPost[] = [
   {
     slug: "spa-like-experience-at-home-without-renovation",
     title: "How to Create a Spa-Like Experience at Home Without Renovation",
+    seoTitle: "Spa-Like Experience at Home Without Renovation",
     excerpt: "How to create a spa-like experience at home without renovation: sensory routine, lighting, scent, textiles, and a 30-minute reset.",
     category: "Bathrooms",
     author: "Ava Romano",

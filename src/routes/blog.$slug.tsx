@@ -99,7 +99,7 @@ export function BlogPost() {
       return (
         <>
           <SEO
-            title={`${post.title} — Marino Ceramic Tile`}
+            title={post.seoTitle ?? post.title}
             description={post.excerpt}
             canonical={`/blog/${post.slug}`}
             ogType="article"
@@ -172,7 +172,13 @@ export function BlogPost() {
             if (block.type === "h3") return <h3 key={i}>{renderInlineLinks(text)}</h3>;
             if (block.type === "quote") return <blockquote key={i}>"{renderInlineLinks(text)}"</blockquote>;
             if (block.type === "ul") return (
-              <ul key={i}>{block.items?.map((it: string, j: number) => <li key={j}>{renderInlineLinks(it)}</li>)}</ul>
+              <ul key={i}>{block.items?.map((it: string, j: number) => {
+                const colon = it.indexOf(":");
+                if (colon > 0 && colon < 35) {
+                  return <li key={j}><strong>{it.slice(0, colon + 1)}</strong>{renderInlineLinks(it.slice(colon + 1))}</li>;
+                }
+                return <li key={j}>{renderInlineLinks(it)}</li>;
+              })}</ul>
             );
             return <p key={i}>{renderInlineLinks(text)}</p>;
           })}
