@@ -146,13 +146,13 @@ export function BlogPost() {
           width={1200}
           height={630}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/30 to-foreground/30" />
-        <div className="container-editorial relative pb-12 md:pb-20 text-background">
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="container-editorial relative z-10 pb-12 md:pb-20 text-white">
           <p className="eyebrow text-accent">{post.category}</p>
-          <h1 className="display text-4xl md:text-6xl lg:text-7xl mt-5 max-w-4xl text-background">
+          <h1 className="display text-4xl md:text-6xl lg:text-7xl mt-5 max-w-4xl text-white">
             {post.title}
           </h1>
-          <p className="mt-8 text-sm tracking-widest uppercase text-background/80">
+          <p className="mt-8 text-sm tracking-widest uppercase text-white/80">
             {post.author} · {post.date} · {post.readingTime}
           </p>
         </div>

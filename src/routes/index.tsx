@@ -48,20 +48,20 @@ export function HomePage() {
           width={1920}
           height={1280}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/30 to-foreground/40" />
-        <div className="container-editorial relative pb-16 md:pb-24 text-background">
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="container-editorial relative z-10 pb-16 md:pb-24 text-white">
           <p className="eyebrow text-accent fade-up">Issue 04 — Spring 2026</p>
-          <h1 className="display text-5xl md:text-7xl lg:text-8xl max-w-5xl mt-6 text-background fade-up">
+          <h1 className="display text-5xl md:text-7xl lg:text-8xl max-w-5xl mt-6 text-white fade-up">
             The new architecture of surface.
           </h1>
           <div className="mt-10 flex flex-col md:flex-row md:items-end justify-between gap-8 fade-up">
-            <p className="max-w-xl text-base md:text-lg text-background/85 leading-relaxed">
+            <p className="max-w-xl text-base md:text-lg text-white/85 leading-relaxed">
               An editorial publication on ceramic, stone and the materials that quietly
               define the way contemporary homes feel. New stories every week.
             </p>
             <Link
               to={`/blog/${POSTS[0].slug}`}
-              className="group inline-flex items-center gap-3 text-sm uppercase tracking-widest border-b border-background pb-2 hover:border-accent hover:text-accent transition-colors w-fit"
+              className="group inline-flex items-center gap-3 text-sm uppercase tracking-widest border-b border-white pb-2 hover:border-accent hover:text-accent transition-colors w-fit"
             >
               Read this week's feature
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
