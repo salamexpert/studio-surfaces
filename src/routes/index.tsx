@@ -40,7 +40,7 @@ export function HomePage() {
       />
 
       {/* HERO */}
-      <section className="relative h-[50vh] md:h-[90vh] min-h-[400px] md:min-h-[640px] -mt-16 md:-mt-20 flex items-center md:items-end overflow-hidden">
+      <section className="relative h-[620px] md:h-[740px] lg:h-[820px] -mt-16 md:-mt-20 flex items-center md:items-end overflow-hidden">
         <img
           src={heroImg}
           alt="Modern architectural living room with travertine surfaces"
