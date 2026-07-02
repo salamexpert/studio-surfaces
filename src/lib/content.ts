@@ -357,36 +357,6 @@ export const POSTS: BlogPost[] = [
       { type: "p", text: "Mixing materials is easier to do badly than well. Limit yourself to two stones at most per room. Keep the ceramic palette tonally adjacent to the stone, never competing with it. And resolve every transition — threshold, edge, corner — with as much care as the surfaces themselves." },
     ],
   },
-  {
-    slug: "rich-vs-poor",
-    title: "rich vs poor",
-    excerpt: "Discover the impact of rich and poor design choices on your home's aesthetic and functionality, and learn how to strike the perfect balance.",
-    category: "Architecture",
-    author: "Annika Holm",
-    date: "July 2, 2026",
-    readingTime: "5 min read",
-    cover: "/blog-images/rich-vs-poor.jpg",
-    content: [
-      { type: "p", text: "The concept of \"rich vs poor\" in design is not just about the cost of materials, but about the overall aesthetic and feel of a space. When it comes to interior design, luxury bathrooms, and modern architecture, the contrast between rich and poor elements can make or break the ambiance of a room. For instance, pairing rich, luxurious ceramic tiles with poor, low-quality fixtures can create a jarring visual disconnect. On the other hand, balancing rich elements with thoughtfully chosen, more affordable options can result in a cohesive, high-end look." },
-      { type: "h2", text: "Introduction to Rich and Poor Design" },
-      { type: "p", text: "In design, \"rich\" refers to elements that are luxurious, high-end, and often expensive, such as marble countertops, ceramic tile floors, or reclaimed wood accents. \"Poor\" elements, on the other hand, are more budget-friendly, basic, and sometimes even makeshift. While it may seem counterintuitive to incorporate \"poor\" elements into a design, doing so can actually create a sense of balance and visual interest. For example, a rich, ceramic tile floor can be paired with a more affordable, yet still stylish, laminate cabinet to create a harmonious contrast." },
-      { type: "h2", text: "The Psychology of Rich and Poor Design" },
-      { type: "p", text: "The way we perceive rich and poor design elements is deeply psychological. Rich elements can evoke feelings of luxury, comfort, and sophistication, while poor elements can create a sense of simplicity, humility, and even nostalgia. When balanced correctly, rich and poor elements can work together to create a space that feels authentic, layered, and visually appealing. A great example of this is a modern, minimalistic bathroom featuring a rich, ceramic tile wall, paired with a more affordable, yet still stylish, pedestal sink." },
-      { type: "h2", text: "Practical Applications of Rich and Poor Design" },
-      { type: "p", text: "So, how can you apply the concept of rich and poor design to your own space? One approach is to identify the areas where you want to splurge on rich, luxurious elements, and then balance them with more affordable, poor elements. For instance, you might choose to invest in a rich, ceramic tile floor, and then pair it with a more affordable, laminate countertop. Another approach is to use rich elements as accent pieces, and pair them with more understated, poor elements. For example, you could add a rich, marble backsplash to a kitchen with more affordable, ceramic tile floors." },
-      { type: "h2", text: "Examples of Rich and Poor Design in Action" },
-      { type: "p", text: "There are many examples of rich and poor design in action, from luxurious, modern bathrooms featuring rich, ceramic tile walls and poor, laminate vanities, to sleek, contemporary kitchens with rich, quartz countertops and poor, stainless steel appliances. One notable example is the work of architect and designer, John Pawson, who often incorporates rich, luxurious elements, such as marble and wood, into his designs, and balances them with more affordable, poor elements, such as concrete and steel." },
-      { type: "h2", text: "Conclusion" },
-      { type: "p", text: "In conclusion, the concept of rich vs poor in design is not just about the cost of materials, but about the overall aesthetic and feel of a space. By balancing rich, luxurious elements with thoughtfully chosen, more affordable options, you can create a cohesive, high-end look that is both visually appealing and functional. Whether you're designing a luxury bathroom, a modern kitchen, or a contemporary living space, the key is to find a balance between rich and poor elements that reflects your personal style and aesthetic." },
-    ],
-    faq: [
-      { question: "What is the difference between rich and poor design elements?", answer: "Rich design elements are luxurious, high-end, and often expensive, while poor elements are more budget-friendly, basic, and sometimes even makeshift. For example, marble countertops are a rich element, while laminate countertops are a poor element." },
-      { question: "How can I balance rich and poor design elements in my space?", answer: "To balance rich and poor design elements, identify the areas where you want to splurge on rich, luxurious elements, and then balance them with more affordable, poor elements. You can also use rich elements as accent pieces, and pair them with more understated, poor elements." },
-      { question: "What are some examples of rich and poor design in action?", answer: "Examples of rich and poor design in action include luxurious, modern bathrooms featuring rich, ceramic tile walls and poor, laminate vanities, and sleek, contemporary kitchens with rich, quartz countertops and poor, stainless steel appliances." },
-      { question: "Can I use rich and poor design elements in a small space?", answer: "Yes, you can use rich and poor design elements in a small space. In fact, balancing rich and poor elements can help create a sense of visual interest and depth in a small room. For example, you could pair a rich, ceramic tile floor with a more affordable, laminate wall." },
-      { question: "How can I incorporate sustainable design into my rich and poor design strategy?", answer: "You can incorporate sustainable design into your rich and poor design strategy by choosing eco-friendly, sustainable materials for your poor elements, such as reclaimed wood or low-VOC paint. You can also look for rich elements that are made from sustainable materials, such as ceramic tile made from recycled materials." },
-    ],
-  },
 ];
 
 export const getPost = (slug: string) => POSTS.find((p) => p.slug === slug);
