@@ -357,6 +357,38 @@ export const POSTS: BlogPost[] = [
       { type: "p", text: "Mixing materials is easier to do badly than well. Limit yourself to two stones at most per room. Keep the ceramic palette tonally adjacent to the stone, never competing with it. And resolve every transition — threshold, edge, corner — with as much care as the surfaces themselves." },
     ],
   },
+  {
+    slug: "what-is-the-difference-between-glazed-and-unglazed-ceramic-tile",
+    title: "What is the difference between glazed and unglazed ceramic tile",
+    excerpt: "Learn the key differences between glazed and unglazed ceramic tile and make an informed decision for your home.",
+    category: "Surfaces",
+    author: "Cosima Lindqvist",
+    date: "July 7, 2026",
+    readingTime: "5 min read",
+    cover: "/blog-images/what-is-the-difference-between-glazed-and-unglazed-ceramic-tile.jpg",
+    content: [
+      { type: "p", text: "Ceramic tile has been a popular choice for flooring and wall coverings in homes for centuries, and its popularity endures due to its durability, versatility, and aesthetic appeal. One of the key decisions homeowners face when selecting ceramic tile is whether to choose glazed or unglazed options. While both types of tile have their own unique characteristics, they differ significantly in terms of their composition, appearance, and maintenance requirements. In this article, we will delve into the differences between glazed and unglazed ceramic tile, exploring their distinct features, advantages, and disadvantages." },
+      { type: "h2", text: "Introduction to Glazed Ceramic Tile" },
+      { type: "p", text: "Glazed ceramic tile is the most common type of ceramic tile, accounting for the majority of tile sales. It is made by applying a layer of glaze, typically made from a mixture of minerals and metals, to the surface of the tile. This glaze serves as a protective barrier, making the tile more resistant to stains, scratches, and fading. Glazed ceramic tile is available in a wide range of colors, patterns, and finishes, from matte to high-gloss, allowing homeowners to choose the perfect style to match their decor." },
+      { type: "h2", text: "Introduction to Unglazed Ceramic Tile" },
+      { type: "p", text: "Unglazed ceramic tile, on the other hand, is made without the application of a glaze. This type of tile is often referred to as \"natural\" or \"unglazed\" ceramic, and it is prized for its rugged, earthy appearance. Unglazed ceramic tile is more porous than glazed tile, which makes it more susceptible to stains and moisture damage. However, it is also more slip-resistant and can provide better traction, making it a popular choice for outdoor and high-traffic areas." },
+      { type: "h2", text: "Key Differences Between Glazed and Unglazed Ceramic Tile" },
+      { type: "p", text: "The main differences between glazed and unglazed ceramic tile lie in their composition, maintenance requirements, and aesthetic appeal. Glazed tile is more durable and resistant to stains and scratches, but it can be more slippery and may require more frequent cleaning. Unglazed tile, while more porous and prone to stains, provides better traction and can add a unique, natural touch to a room's decor. Additionally, glazed tile is generally more expensive than unglazed tile, although prices can vary depending on the specific type and quality of the tile." },
+      { type: "h2", text: "Maintenance and Upkeep" },
+      { type: "p", text: "In terms of maintenance, glazed ceramic tile is generally easier to clean and maintain than unglazed tile. The glaze provides a protective barrier that prevents dirt and stains from penetrating the surface of the tile, making it simpler to wipe down and clean. Unglazed tile, on the other hand, requires more frequent sealing and cleaning to prevent stains and moisture damage. However, some homeowners may prefer the natural, worn look that unglazed tile can develop over time, which can add character and charm to a room." },
+      { type: "h2", text: "Design and Aesthetic Considerations" },
+      { type: "p", text: "When it comes to design and aesthetic considerations, both glazed and unglazed ceramic tile have their own unique advantages. Glazed tile is available in a wide range of colors and patterns, making it easy to find a style that matches a room's decor. Unglazed tile, while more limited in terms of color options, can provide a unique, natural touch that adds warmth and character to a room. Additionally, unglazed tile can be used to create a variety of decorative effects, such as a distressed or worn look, which can add visual interest to a space." },
+      { type: "h2", text: "Conclusion" },
+      { type: "p", text: "In conclusion, the choice between glazed and unglazed ceramic tile ultimately depends on a homeowner's specific needs and preferences. While glazed tile is more durable and resistant to stains, unglazed tile can provide a unique, natural touch that adds warmth and character to a room. By understanding the key differences between these two types of tile, homeowners can make an informed decision and choose the perfect ceramic tile for their dream home." },
+    ],
+    faq: [
+      { question: "What is the main difference between glazed and unglazed ceramic tile?", answer: "The main difference between glazed and unglazed ceramic tile is the application of a glaze, which provides a protective barrier and affects the tile's durability, maintenance requirements, and aesthetic appeal." },
+      { question: "Which type of tile is more durable and resistant to stains?", answer: "Glazed ceramic tile is more durable and resistant to stains due to the protective barrier provided by the glaze. However, unglazed tile can still be durable and long-lasting with proper maintenance and sealing." },
+      { question: "Can unglazed ceramic tile be used in high-traffic areas?", answer: "Yes, unglazed ceramic tile can be used in high-traffic areas due to its slip-resistant properties. However, it may require more frequent cleaning and sealing to prevent stains and moisture damage." },
+      { question: "Is glazed ceramic tile more expensive than unglazed tile?", answer: "Generally, glazed ceramic tile is more expensive than unglazed tile, although prices can vary depending on the specific type and quality of the tile." },
+      { question: "Can unglazed ceramic tile be sealed to protect it from stains and moisture damage?", answer: "Yes, unglazed ceramic tile can be sealed to protect it from stains and moisture damage. However, the sealant may need to be reapplied periodically to maintain its effectiveness." },
+    ],
+  },
 ];
 
 export const getPost = (slug: string) => POSTS.find((p) => p.slug === slug);
