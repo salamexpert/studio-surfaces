@@ -389,6 +389,36 @@ export const POSTS: BlogPost[] = [
       { question: "Can unglazed ceramic tile be sealed to protect it from stains and moisture damage?", answer: "Yes, unglazed ceramic tile can be sealed to protect it from stains and moisture damage. However, the sealant may need to be reapplied periodically to maintain its effectiveness." },
     ],
   },
+  {
+    slug: "what-does-pei-rating-mean-on-ceramic-tile",
+    title: "What does PEI rating mean on ceramic tile",
+    excerpt: "Learn about PEI ratings and how they impact your ceramic tile choice, ensuring durability and performance in high-traffic areas.",
+    category: "Surfaces",
+    author: "Theo Castellan",
+    date: "July 8, 2026",
+    readingTime: "5 min read",
+    cover: "/blog-images/what-does-pei-rating-mean-on-ceramic-tile.jpg",
+    content: [
+      { type: "p", text: "The PEI rating is a crucial factor to consider when selecting ceramic tiles for your home or commercial space. It's a measure of the tile's durability and resistance to abrasion, which is essential for high-traffic areas. But what does PEI rating mean, and how does it impact your tile choice? In this article, we'll delve into the world of PEI ratings, exploring their significance, classification, and how to use them to make informed decisions when choosing ceramic tiles." },
+      { type: "h2", text: "Introduction to PEI Rating" },
+      { type: "p", text: "The PEI rating, also known as the Porcelain Enamel Institute rating, is a standard for measuring the durability and resistance of ceramic tiles to abrasion. The rating system ranges from PEI 0 to PEI 5, with higher ratings indicating greater resistance to wear and tear. This rating is particularly important for commercial spaces, such as restaurants, hotels, and shopping centers, where foot traffic is high, and the tile's durability is put to the test." },
+      { type: "h2", text: "Classification of PEI Ratings" },
+      { type: "p", text: "The PEI rating system classifies ceramic tiles into five categories, each with its own set of characteristics and suitable applications. PEI 0 tiles are not recommended for flooring, as they are prone to wear and tear. PEI 1 and PEI 2 tiles are suitable for residential areas with low traffic, such as bedrooms and bathrooms. PEI 3 tiles are suitable for residential areas with moderate traffic, such as living rooms and kitchens. PEI 4 and PEI 5 tiles are the most durable and are recommended for high-traffic areas, such as commercial spaces and public areas." },
+      { type: "h2", text: "Factors Affecting PEI Rating" },
+      { type: "p", text: "Several factors can affect a ceramic tile's PEI rating, including the type of glaze used, the tile's thickness, and the manufacturing process. A tile with a high-quality glaze and a thicker construction will generally have a higher PEI rating than a tile with a lower-quality glaze and a thinner construction. Additionally, tiles that are manufactured using advanced technologies, such as digital printing, may have a higher PEI rating than those manufactured using traditional methods." },
+      { type: "h2", text: "Importance of PEI Rating in Tile Selection" },
+      { type: "p", text: "When selecting ceramic tiles, the PEI rating is an essential factor to consider. A tile with a high PEI rating will be more durable and resistant to wear and tear, reducing the need for frequent maintenance and replacement. This is particularly important for commercial spaces, where the cost of maintenance and replacement can be high. Additionally, a tile with a high PEI rating will also be more resistant to stains and scratches, making it easier to clean and maintain." },
+      { type: "h2", text: "Conclusion" },
+      { type: "p", text: "In conclusion, the PEI rating is a critical factor to consider when selecting ceramic tiles for your home or commercial space. By understanding the PEI rating system and its classification, you can make informed decisions when choosing ceramic tiles, ensuring that they are durable, resistant to wear and tear, and suitable for your specific needs. Whether you're looking for tiles for a residential or commercial space, the PEI rating is an essential factor to consider, and by choosing a tile with a high PEI rating, you can enjoy a beautiful and durable floor for years to come." },
+    ],
+    faq: [
+      { question: "What does PEI rating mean on ceramic tile?", answer: "The PEI rating is a measure of a ceramic tile's durability and resistance to abrasion, with higher ratings indicating greater resistance to wear and tear." },
+      { question: "What are the different classifications of PEI ratings?", answer: "The PEI rating system classifies ceramic tiles into five categories, ranging from PEI 0 to PEI 5, with higher ratings indicating greater durability and resistance to wear and tear." },
+      { question: "What factors can affect a ceramic tile's PEI rating?", answer: "Several factors can affect a ceramic tile's PEI rating, including the type of glaze used, the tile's thickness, and the manufacturing process." },
+      { question: "Why is the PEI rating important in tile selection?", answer: "The PEI rating is essential in tile selection because it helps to determine the tile's durability and resistance to wear and tear, reducing the need for frequent maintenance and replacement." },
+      { question: "How can I use the PEI rating to make informed decisions when choosing ceramic tiles?", answer: "By understanding the PEI rating system and its classification, you can choose ceramic tiles that are suitable for your specific needs, ensuring that they are durable, resistant to wear and tear, and easy to maintain." },
+    ],
+  },
 ];
 
 export const getPost = (slug: string) => POSTS.find((p) => p.slug === slug);
