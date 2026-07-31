@@ -47,9 +47,9 @@ function StripTrailingSlash() {
   return null;
 }
 
-export function App() {
+export function App({ helmetContext }: { helmetContext?: any } = {}) {
   return (
-    <HelmetProvider>
+    <HelmetProvider context={helmetContext}>
       <ScrollToTop />
       <StripTrailingSlash />
       <div className="min-h-screen flex flex-col">
