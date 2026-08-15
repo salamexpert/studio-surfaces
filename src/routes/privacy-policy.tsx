@@ -8,7 +8,7 @@ export function PrivacyPage() {
   return (
     <>
       <SEO
-        title="Privacy Policy — Marino Ceramic Tile"
+        title="Privacy Policy"
         description="How Marino Ceramic Tile collects, uses and protects your information when you visit our editorial publication. Last updated April 2026."
         canonical="/privacy-policy"
         noIndex={false}

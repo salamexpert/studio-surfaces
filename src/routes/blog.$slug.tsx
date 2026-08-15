@@ -30,7 +30,7 @@ const DEFAULT_FAQ_SCHEMA = {
   ],
 };
 
-function renderInlineLinks(text: string) {
+function renderInlineLinks(text: string, dofollowLinks: string[] = []) {
   const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
   const parts: Array<string | JSX.Element> = [];
   let lastIndex = 0;
@@ -45,12 +45,13 @@ function renderInlineLinks(text: string) {
     }
 
     const isInternal = url.startsWith(INTERNAL_BASE) || url.startsWith("/");
+    const isDoFollow = dofollowLinks.includes(url);
     parts.push(
       <a
         key={`${label}-${start}`}
         href={url}
         {...(!isInternal
-          ? { target: "_blank", rel: "noopener noreferrer nofollow" }
+          ? { target: "_blank", rel: isDoFollow ? "noopener noreferrer" : "noopener noreferrer nofollow" }
           : {})}
         className="text-accent underline decoration-accent/40 hover:decoration-accent"
       >
@@ -127,7 +128,7 @@ export function BlogPost() {
               { name: post.title, item: postUrl },
             ]}
             webPageType="ItemPage"
-            extraSchema={faqSchemaForPost(post.faq)}
+            extraSchema={[faqSchemaForPost(post.faq), ...(post.extraSchemas ?? [])].filter(Boolean)}
         items={[
           { name: "Home", href: "/" },
           { name: "Blog", href: "/blog" },
@@ -168,19 +169,20 @@ export function BlogPost() {
           {post.content.map((block: typeof post.content[number], i: number) => {
             const text = block.text?.trim() ?? "";
             if (text && text === post.title) return null;
-            if (block.type === "h2") return <h2 key={i}>{renderInlineLinks(text)}</h2>;
-            if (block.type === "h3") return <h3 key={i}>{renderInlineLinks(text)}</h3>;
-            if (block.type === "quote") return <blockquote key={i}>"{renderInlineLinks(text)}"</blockquote>;
+            const df = post.dofollowLinks ?? [];
+            if (block.type === "h2") return <h2 key={i}>{renderInlineLinks(text, df)}</h2>;
+            if (block.type === "h3") return <h3 key={i}>{renderInlineLinks(text, df)}</h3>;
+            if (block.type === "quote") return <blockquote key={i}>"{renderInlineLinks(text, df)}"</blockquote>;
             if (block.type === "ul") return (
               <ul key={i}>{block.items?.map((it: string, j: number) => {
                 const colon = it.indexOf(":");
                 if (colon > 0 && colon < 35) {
-                  return <li key={j}><strong>{it.slice(0, colon + 1)}</strong>{renderInlineLinks(it.slice(colon + 1))}</li>;
+                  return <li key={j}><strong>{it.slice(0, colon + 1)}</strong>{renderInlineLinks(it.slice(colon + 1), df)}</li>;
                 }
-                return <li key={j}>{renderInlineLinks(it)}</li>;
+                return <li key={j}>{renderInlineLinks(it, df)}</li>;
               })}</ul>
             );
-            return <p key={i}>{renderInlineLinks(text)}</p>;
+            return <p key={i}>{renderInlineLinks(text, df)}</p>;
           })}
 
           <section className="mt-14">

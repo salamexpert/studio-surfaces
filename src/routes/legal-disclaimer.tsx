@@ -8,7 +8,7 @@ export function LegalDisclaimerPage() {
   return (
     <>
       <SEO
-        title="Legal Disclaimer — Marino Ceramic Tile"
+        title="Legal Disclaimer"
         description="Legal disclaimer for Marino Ceramic Tile. This website is an independent publication not affiliated with any previous owner, company, or trademark holder connected with this domain."
         canonical="/legal-disclaimer"
         breadcrumbs={[

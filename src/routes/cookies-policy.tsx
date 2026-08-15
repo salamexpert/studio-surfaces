@@ -8,7 +8,7 @@ export function CookiesPolicyPage() {
   return (
     <>
       <SEO
-        title="Cookies Policy — Marino Ceramic Tile"
+        title="Cookies Policy"
         description="How Marino Ceramic Tile uses cookies and similar tracking technologies when you visit our editorial publication."
         canonical="/cookies-policy"
         breadcrumbs={[

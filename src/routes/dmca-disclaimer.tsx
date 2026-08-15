@@ -8,7 +8,7 @@ export function DmcaPage() {
   return (
     <>
       <SEO
-        title="DMCA Disclaimer — Copyright Policy | Marino Ceramic Tile"
+        title="DMCA Disclaimer — Copyright Policy"
         description="DMCA copyright infringement notice procedure for Marino Ceramic Tile. How to file a takedown notice or counter-notice for content on our editorial publication."
         canonical="/dmca-disclaimer"
         breadcrumbs={[

@@ -7,7 +7,7 @@ export function TermsPage() {
   return (
     <>
       <SEO
-        title="Terms of Service — Marino Ceramic Tile"
+        title="Terms of Service"
         description="Terms governing use of the Marino Ceramic Tile editorial publication and its content. Includes content policy, recommendations disclaimer and liability limitations."
         canonical="/terms-of-service"
         breadcrumbs={[
