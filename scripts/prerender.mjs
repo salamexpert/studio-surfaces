@@ -36,6 +36,40 @@ async function prerender() {
 
   console.log(`Prerendering ${routesList.length} routes...`);
 
+  // Load manifest mapping (Vite output manifest)
+  const manifestPath = fs.existsSync(path.resolve(distDir, ".vite/manifest.json"))
+    ? path.resolve(distDir, ".vite/manifest.json")
+    : fs.existsSync(path.resolve(distDir, "manifest.json"))
+      ? path.resolve(distDir, "manifest.json")
+      : null;
+
+  const assetMap = new Map();
+  if (manifestPath) {
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf-8"));
+    for (const [srcKey, entry] of Object.entries(manifest)) {
+      if (entry.file) {
+        const cleanKey = srcKey.startsWith("/") ? srcKey : "/" + srcKey;
+        assetMap.set(cleanKey, "/" + entry.file);
+      }
+    }
+  }
+
+  // Fallback: Also scan dist/assets folder directly if any file isn't in manifest
+  const assetsDir = path.resolve(distDir, "assets");
+  if (fs.existsSync(assetsDir)) {
+    const distFiles = fs.readdirSync(assetsDir);
+    for (const file of distFiles) {
+      const match = file.match(/^(.+)-[A-Za-z0-9_-]+\.([a-zA-Z0-9]+)$/);
+      if (match) {
+        const [, origName, ext] = match;
+        const srcPath = `/src/assets/${origName}.${ext}`;
+        if (!assetMap.has(srcPath)) {
+          assetMap.set(srcPath, `/assets/${file}`);
+        }
+      }
+    }
+  }
+
   for (const url of routesList) {
     try {
       const { html, helmet } = renderFn(url);
@@ -66,6 +100,13 @@ async function prerender() {
         '<div id="root"></div>',
         `<div id="root">${html}</div>`
       );
+
+      // Transform raw /src/assets/* paths to production /assets/* hashed paths
+      for (const [srcUrl, distUrl] of assetMap.entries()) {
+        pageHtml = pageHtml.replaceAll(srcUrl, distUrl);
+        const relSrcUrl = srcUrl.startsWith("/") ? srcUrl.slice(1) : srcUrl;
+        pageHtml = pageHtml.replaceAll(relSrcUrl, distUrl);
+      }
 
       // Determine output path
       let filePath;
