@@ -2,7 +2,7 @@ name: Automated Blog Generation
 
 on:
   schedule:
-    - cron: '0 19 * * *'  # Daily at midnight PKT (UTC+5 = 19:00 UTC)
+    - cron: '0 14 * * 6'
   workflow_dispatch:        # Allow manual trigger from GitHub Actions tab
 
 permissions:
