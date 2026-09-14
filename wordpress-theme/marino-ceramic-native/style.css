@@ -1,0 +1,11 @@
+/*
+Theme Name: Marino Ceramic Tile Native
+Theme URI: https://marinoceramictile.com/
+Author: Marino Ceramic Tile
+Description: Native WordPress theme for Marino Ceramic Tile, converted from the original Vite/React (Lovable) build. Reuses the compiled Tailwind design system.
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 8.0
+Text Domain: marino-ceramic-native
+*/
+/* Runtime styles compiled into assets/app.css (enqueued in functions.php). */
