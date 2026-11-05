@@ -1,0 +1,17 @@
+{
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "layout": {"contentSize":"800px","wideSize":"1280px"},
+    "color": {"palette":[{"slug":"background","name":"Warm ivory","color":"#fcf6ee"},{"slug":"foreground","name":"Ink","color":"#1d140f"},{"slug":"accent","name":"Terracotta","color":"#af5331"},{"slug":"secondary","name":"Stone","color":"#efe6dd"},{"slug":"muted","name":"Muted text","color":"#5d534e"},{"slug":"border","name":"Border","color":"#ddd6cf"}]},
+    "typography": {"fontFamilies":[{"slug":"heading","name":"Fraunces","fontFamily":"Fraunces,Georgia,serif"},{"slug":"body","name":"Inter","fontFamily":"Inter,system-ui,sans-serif"}],"fontSizes":[{"slug":"display","name":"Homepage display","size":"clamp(3rem,6vw,6rem)"},{"slug":"headline","name":"Page headline","size":"clamp(3rem,6vw,4.5rem)"},{"slug":"article-title","name":"Article title","size":"clamp(2.25rem,5vw,3.75rem)"},{"slug":"section-heading","name":"Section heading","size":"clamp(1.875rem,4vw,3rem)"},{"slug":"subheading","name":"Subheading","size":"clamp(1.5rem,3vw,2.25rem)"},{"slug":"card-heading","name":"Card heading","size":"1.5rem"},{"slug":"heading-2","name":"Article H2","size":"2rem"},{"slug":"heading-3","name":"Article H3","size":"1.4rem"},{"slug":"heading-4","name":"H4","size":"1.25rem"},{"slug":"heading-5","name":"H5","size":"1.125rem"},{"slug":"heading-6","name":"H6","size":"1rem"},{"slug":"eyebrow","name":"Section label","size":".625rem"}]},
+    "spacing":{"units":["px","rem","em","%","vw","vh"],"blockGap":true}
+  },
+  "styles": {
+    "typography":{"fontFamily":"var:preset|font-family|body","fontSize":"1rem","lineHeight":"1.7"},
+    "spacing":{"blockGap":"0"},
+    "elements":{"heading":{"typography":{"fontFamily":"var:preset|font-family|heading","fontWeight":"400","lineHeight":"1.15"}},"h1":{"typography":{"fontSize":"clamp(2.25rem,5vw,4rem)"}},"h2":{"typography":{"fontSize":"clamp(1.75rem,4vw,3rem)"}},"h3":{"typography":{"fontSize":"1.5rem"}},"h4":{"typography":{"fontSize":"1.25rem"}},"h5":{"typography":{"fontSize":"1.125rem"}},"h6":{"typography":{"fontSize":"1rem"}},"link":{"color":{"text":"inherit"},"typography":{"textDecoration":"none"}}}
+  },
+  "templateParts":[{"name":"header","title":"Header","area":"header"},{"name":"footer","title":"Footer","area":"footer"}],
+  "customTemplates":[{"name":"marino-content","title":"Migrated editable page","postTypes":["page"]},{"name":"marino-article","title":"Migrated editable article","postTypes":["post"]}]
+}

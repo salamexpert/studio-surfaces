@@ -1,66 +1,24 @@
-name: Deploy
-
+name: Deploy WordPress theme only
 on:
-  push:
-    branches: [main]
-
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: marino-wordpress-theme
+  cancel-in-progress: false
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 15
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      # ── Deploy all regular files ──────────────────────────────────────────
-      # dist/* matches every non-hidden file; strip_components removes the
-      # leading "dist/" so files land directly in public_html/.
-      - name: Deploy files
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: root
-          key: ${{ secrets.VPS_SSH_KEY }}
-          source: "dist/*"
-          target: /home/marinoceramictile/public_html/
-          strip_components: 1
-
-      # ── Deploy .htaccess separately ───────────────────────────────────────
-      # Shell globs like dist/* intentionally skip dot-files, so .htaccess
-      # (which controls SPA routing and all redirects) must be sent in its
-      # own step. Without this the redirects and React routing break entirely.
-      - name: Deploy .htaccess
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: root
-          key: ${{ secrets.VPS_SSH_KEY }}
-          source: "dist/.htaccess"
-          target: /home/marinoceramictile/public_html/
-          strip_components: 1
-
-      # ── Fix permissions and reload Apache ────────────────────────────────
-      - name: Set permissions and reload Apache
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: root
-          key: ${{ secrets.VPS_SSH_KEY }}
-          script: |
-            chown -R www-data:www-data /home/marinoceramictile/public_html/
-            find /home/marinoceramictile/public_html/ -type f -exec chmod 644 {} \;
-            find /home/marinoceramictile/public_html/ -type d -exec chmod 755 {} \;
-            systemctl reload apache2
-            echo "Deploy complete at $(date)"
+          python-version: '3.12'
+      - run: pip install paramiko==5.1.0
+      - run: python scripts/deploy_wordpress_theme.py --validate
+      - run: python scripts/deploy_wordpress_theme.py
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_SSH_PASSPHRASE: ${{ secrets.VPS_SSH_PASSPHRASE }}

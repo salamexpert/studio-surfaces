@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 56" role="img" aria-label="Marino Ceramic Tile">
+  <defs>
+    <linearGradient id="tl" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#CDB99E"/>
+      <stop offset="100%" stop-color="#B89E82"/>
+    </linearGradient>
+    <linearGradient id="tr" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#332C26"/>
+      <stop offset="100%" stop-color="#1C1712"/>
+    </linearGradient>
+    <linearGradient id="bl" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B8704A"/>
+      <stop offset="100%" stop-color="#8B5132"/>
+    </linearGradient>
+    <linearGradient id="br" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#CDB99E"/>
+      <stop offset="100%" stop-color="#B89E82"/>
+    </linearGradient>
+  </defs>
+
+  <!-- === TILE MARK (56x56) === -->
+  <!-- Background plate -->
+  <rect width="56" height="56" rx="3" fill="#F7F2EC"/>
+  <!-- Grout lines -->
+  <rect x="25" y="2" width="6" height="52" fill="#E4D8CC"/>
+  <rect x="2" y="25" width="52" height="6" fill="#E4D8CC"/>
+  <!-- Top-left tile: warm sand -->
+  <rect x="2" y="2" width="23" height="23" rx="2" fill="url(#tl)"/>
+  <rect x="5" y="5" width="8" height="2.5" rx="1.25" fill="#DDD0BE" opacity="0.8"/>
+  <rect x="5" y="9.5" width="5" height="2.5" rx="1.25" fill="#DDD0BE" opacity="0.5"/>
+  <!-- Top-right tile: deep ink -->
+  <rect x="31" y="2" width="23" height="23" rx="2" fill="url(#tr)"/>
+  <rect x="34" y="5" width="8" height="2.5" rx="1.25" fill="#4A423B" opacity="0.7"/>
+  <rect x="34" y="9.5" width="5" height="2.5" rx="1.25" fill="#4A423B" opacity="0.4"/>
+  <!-- Bottom-left tile: terracotta -->
+  <rect x="2" y="31" width="23" height="23" rx="2" fill="url(#bl)"/>
+  <rect x="5" y="34" width="8" height="2.5" rx="1.25" fill="#CA8A62" opacity="0.8"/>
+  <rect x="5" y="38.5" width="5" height="2.5" rx="1.25" fill="#CA8A62" opacity="0.5"/>
+  <!-- Bottom-right tile: warm sand reversed -->
+  <rect x="31" y="31" width="23" height="23" rx="2" fill="url(#br)"/>
+  <rect x="34" y="34" width="8" height="2.5" rx="1.25" fill="#DDD0BE" opacity="0.8"/>
+  <rect x="34" y="38.5" width="5" height="2.5" rx="1.25" fill="#DDD0BE" opacity="0.5"/>
+
+  <!-- === LOGOTYPE === -->
+  <!-- MARINO wordmark -->
+  <text
+    x="68"
+    y="36"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="28"
+    font-weight="400"
+    fill="#1C1712"
+    letter-spacing="5"
+  >MARINO</text>
+  <!-- Accent dot after MARINO -->
+  <circle cx="265" cy="32" r="3.5" fill="#9B5434"/>
+  <!-- CERAMIC TILE sub-wordmark -->
+  <text
+    x="69"
+    y="50"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="10"
+    font-weight="600"
+    fill="#9B5434"
+    letter-spacing="5"
+  >CERAMIC TILE</text>
+</svg>
