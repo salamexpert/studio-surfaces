@@ -1,6 +1,6 @@
 <?php
 if(!defined('ABSPATH'))exit;
-const MC_VERSION='2.0.1';
+const MC_VERSION='2.0.2';
 const MC_PUBLIC_ORIGIN='https://marinoceramictile.com';
 add_action('after_setup_theme',function(){foreach(['title-tag','post-thumbnails','responsive-embeds','editor-styles','wp-block-styles','custom-logo']as$s)add_theme_support($s);add_editor_style(['assets/app.css','assets/blocks.css']);});
 add_action('enqueue_block_assets',function(){if(is_admin())wp_enqueue_style('mc-editor-fonts','https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap',[],null);});
