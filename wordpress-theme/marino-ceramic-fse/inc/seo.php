@@ -47,7 +47,15 @@ function mc_social_image(): string {
     return wp_get_attachment_image_url((int)get_option('mc_fse_social_image'), 'full') ?: get_theme_file_uri('/assets/images/home-hero.jpg');
 }
 
-add_filter('rank_math/frontend/canonical', fn() => mc_canonical_url(), 99);
+add_filter('rank_math/frontend/canonical', fn() => is_404() ? false : mc_canonical_url(), 99);
+add_filter('rank_math/frontend/robots', function($robots) {
+    if(is_404() || is_search()) $robots['index']='noindex';
+    return $robots;
+}, 99);
+add_filter('wp_robots', function($robots) {
+    if(is_404() || is_search()) { unset($robots['index']); $robots['noindex']=true; }
+    return $robots;
+}, 99);
 add_filter('rank_math/frontend/description', fn() => mc_meta_description(), 99);
 add_filter('rank_math/opengraph/facebook/image', fn() => mc_social_image(), 99);
 add_filter('rank_math/opengraph/twitter/image', fn() => mc_social_image(), 99);
